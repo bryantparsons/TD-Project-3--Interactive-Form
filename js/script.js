@@ -9,10 +9,12 @@ otherJobRole.style.display = 'none';
 document.getElementById('name').focus({preventScroll:true});
 
 jobTitle.addEventListener('change', (e) => {
-    if (e.target.value === 'other') {
-        otherJobRole.style.display = 'block';           
-        } else {
-        otherJobRole.style.dispay = 'none';
-        }
+        const otherJobSelect = e.target;
+        otherJobSelect.value = 'other';
+        if (otherJobSelect) {
+            otherJobRole.style.display = 'block';           
+            } else {
+            otherJobRole.style.dispay = 'none';
+            }
     
 });
