@@ -14,7 +14,7 @@ jobTitle.addEventListener('change', (e) => {
         if (otherJobSelect) {
             otherJobRole.style.display = 'block';           
             } else {
-            otherJobRole.style.dispay = 'none';
+            otherJobRole.style.display = 'none';
             }
     
 });
