@@ -21,5 +21,14 @@ jobTitle.addEventListener('change', (e) => {
 });
 
 shirtDesign.addEventListener('change', (e) => {
-    
+    shirtColor.disabled = false;
+    for (let i = 0; i < shirtColor.length; i += 1) {
+        const targetValue = e.target.value;
+        const colorData = shirtColor[i].getAttribute('data-theme');
+        if (targetValue === colorData) {
+            shirtColor[i].style.display = 'block';
+        } else {
+            shirtColor[i].style.display = 'none';
+        }
+    }
 });
