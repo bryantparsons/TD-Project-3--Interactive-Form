@@ -36,12 +36,19 @@ shirtDesign.addEventListener('change', (e) => {
 });
 
 activitiesFieldset.addEventListener('change', (e) => {
+    let totalCost = 0;
     for (let i = 0; i < checkboxes.length; i += 1) {
         const clicked = e.target;
         let activitiesCost = document.getElementById('activities-cost');
         const dataCost = clicked.getAttribute('data-cost');
         if (clicked.checked) {      
-            activitiesCost.textContent = dataCost;          
+            totalCost = parseInt(dataCost) + totalCost;
+            activitiesCost.textContent = totalCost; 
+           } else if (clicked !== clicked.checked) {
+               totalCost = totalCost + parseInt(dataCost);
+                activitiesCost.textContent = displayCost;
+            } else if (clicked === clicked.checked) {
+               totalCost = totalCost - parseInt(dataCost);
+            } 
         }
-    }
 });
