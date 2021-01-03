@@ -44,9 +44,9 @@ activitiesFieldset.addEventListener('change', (e) => {
         const dataCost = checkboxes[i].getAttribute('data-cost');
         if (dataInput === dataCost && clicked !== checkboxes[i]) { 
             if (clicked.checked)  {
-            totalCost = totalCost += parseInt(dataCost);             
+            totalCost = totalCost + parseInt(dataCost);             
         } else {
-            totalCost = totalCost -= parseInt(dataCost); 
+            totalCost = totalCost -parseInt(dataCost); 
         }
     }   
     }
