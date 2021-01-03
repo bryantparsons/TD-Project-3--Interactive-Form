@@ -35,20 +35,20 @@ shirtDesign.addEventListener('change', (e) => {
     }
 });
 
-activitiesFieldset.addEventListener('change', (e) => {
+activitiesFieldset.addEventListener('change', (e) => { 
     let totalCost = 0;
+    const activitiesCost = document.getElementById('activities-cost');
+    const clicked = e.target;
+    const dataInput = e.target.getAttribute('data-cost'); 
     for (let i = 0; i < checkboxes.length; i += 1) {
-        const clicked = e.target;
-        let activitiesCost = document.getElementById('activities-cost');
-        const dataCost = clicked.getAttribute('data-cost');
-        if (clicked.checked) {      
-            totalCost = parseInt(dataCost) + totalCost;
-            activitiesCost.textContent = totalCost; 
-           } else if (clicked !== clicked.checked) {
-               totalCost = totalCost + parseInt(dataCost);
-                activitiesCost.textContent = displayCost;
-            } else if (clicked === clicked.checked) {
-               totalCost = totalCost - parseInt(dataCost);
-            } 
+        const dataCost = checkboxes[i].getAttribute('data-cost');
+        if (dataInput === dataCost && clicked !== checkboxes[i]) { 
+            if (clicked.checked)  {
+            totalCost = totalCost += parseInt(dataCost);             
+        } else {
+            totalCost = totalCost -= parseInt(dataCost); 
         }
+    }   
+    }
+    activitiesCost.textContent = `Total: $${totalCost}`;
 });
