@@ -46,7 +46,7 @@ activitiesFieldset.addEventListener('change', (e) => {
             if (clicked.checked)  {
             totalCost = totalCost + parseInt(dataCost);             
         } else {
-            totalCost = totalCost -parseInt(dataCost); 
+            totalCost = totalCost - parseInt(dataCost); 
         }
     }   
     }
