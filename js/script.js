@@ -5,9 +5,18 @@ const shirtColor = document.getElementById('color');
 const shirtDesign = document.getElementById('design');
 const activitiesFieldset = document.getElementById('activities');
 const checkboxes = document.querySelectorAll('#activities input');
+let totalCost = 0;
+const payment = document.getElementById('payment');
+const creditCard = document.getElementById('credit-card');
+const payPal = document.getElementById('paypal');
+const bitcoin = document.getElementById('bitcoin');
+const paymentOption = payment.children;
 
 otherJobRole.style.display = 'none';
 shirtColor.disabled = true;
+payPal.style.display = 'none';
+bitcoin.style.display = 'none';
+paymentOption.item(1).selected = true;
 
 //Code to bring name input for form into focus
 
@@ -35,20 +44,18 @@ shirtDesign.addEventListener('change', (e) => {
     }
 });
 
-activitiesFieldset.addEventListener('change', (e) => { 
-    let totalCost = 0;
+activitiesFieldset.addEventListener('change', (e) => {  
     const activitiesCost = document.getElementById('activities-cost');
     const clicked = e.target;
-    const dataInput = e.target.getAttribute('data-cost'); 
-    for (let i = 0; i < checkboxes.length; i += 1) {
-        const dataCost = checkboxes[i].getAttribute('data-cost');
-        if (dataInput === dataCost && clicked !== checkboxes[i]) { 
-            if (clicked.checked)  {
-            totalCost = totalCost + parseInt(dataCost);             
+    const dataCost = e.target.getAttribute('data-cost'); 
+        if (clicked.checked)  {
+            totalCost = totalCost += parseInt(dataCost);             
         } else {
-            totalCost = totalCost - parseInt(dataCost); 
+            totalCost = totalCost -= parseInt(dataCost); 
         }
-    }   
-    }
     activitiesCost.textContent = `Total: $${totalCost}`;
+});
+
+payment.addEventListener('change', (e) => {
+
 });
