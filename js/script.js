@@ -57,5 +57,23 @@ activitiesFieldset.addEventListener('change', (e) => {
 });
 
 payment.addEventListener('change', (e) => {
-
+    const payChoice = e.target;    
+    if (payChoice.value === 'bitcoin') {
+        bitcoin.style.display = 'block';   
+    } else {
+        creditCard.style.display = 'none';
+        payPal.style.display = 'none';
+    }
+    if (payChoice.value === 'paypal') {
+        payPal.style.display = 'block';
+    } else {
+        bitcoin.style.display = 'none';
+        creditCard.style.display = 'none';
+    }
+    if (payChoice.value === 'credit-card') {
+        creditCard.style.display = 'block';
+    } else {
+        payPal.style.display = 'none';
+        bitcoin.style.display = 'none';
+    }
 });
