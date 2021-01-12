@@ -11,12 +11,19 @@ const creditCard = document.getElementById('credit-card');
 const payPal = document.getElementById('paypal');
 const bitcoin = document.getElementById('bitcoin');
 const paymentOption = payment.children;
+const name = document.getElementById('name');
+const email = document.getElementById('name');
+const ccInput = document.querySelector("#cc-num");
+const zip = document.querySelector("#zip");
+const cvv = document.querySelector("#cvv");
+const form = document.getElementsByTagName("form")[0];
 
 otherJobRole.style.display = 'none';
 shirtColor.disabled = true;
 payPal.style.display = 'none';
 bitcoin.style.display = 'none';
 paymentOption.item(1).selected = true;
+
 
 //Code to bring name input for form into focus
 
@@ -58,22 +65,21 @@ activitiesFieldset.addEventListener('change', (e) => {
 
 payment.addEventListener('change', (e) => {
     const payChoice = e.target;    
-    if (payChoice.value === 'bitcoin') {
-        bitcoin.style.display = 'block';   
-    } else {
-        creditCard.style.display = 'none';
-        payPal.style.display = 'none';
+    const payArray = [payPal, bitcoin, creditCard];
+    for (let i = 0; i < payArray.length; i += 1) {
+        payArray[i].style.display = 'none';
+        if (payChoice.value === 'bitcoin') {
+            bitcoin.style.display = 'block';
+        }
+        if (payChoice.value === 'paypal') {
+            payPal.style.display = 'block';
+        } 
+        if (payChoice.value === 'credit-card') {
+            creditCard.style.display = 'block';
+        }
     }
-    if (payChoice.value === 'paypal') {
-        payPal.style.display = 'block';
-    } else {
-        bitcoin.style.display = 'none';
-        creditCard.style.display = 'none';
-    }
-    if (payChoice.value === 'credit-card') {
-        creditCard.style.display = 'block';
-    } else {
-        payPal.style.display = 'none';
-        bitcoin.style.display = 'none';
-    }
+});
+
+form.addEventListener('submit', (e) => {
+    
 });
