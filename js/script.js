@@ -12,7 +12,7 @@ const payPal = document.getElementById('paypal');
 const bitcoin = document.getElementById('bitcoin');
 const paymentOption = payment.children;
 const name = document.getElementById('name');
-const email = document.getElementById('name');
+const email = document.getElementById('email');
 const ccInput = document.querySelector("#cc-num");
 const zip = document.querySelector("#zip");
 const cvv = document.querySelector("#cvv");
@@ -81,5 +81,34 @@ payment.addEventListener('change', (e) => {
 });
 
 form.addEventListener('submit', (e) => {
-    
+   const nameInput = name.value;
+   const nameTest = /\w/.test(nameInput);
+   console.log(nameTest);
+    if (nameTest === false) {
+        e.preventDefault();
+    } 
+   const emailInput = email.value;
+   const emailTest = /[^@]+@[^@.]+\.(com)/i.test(emailInput);
+   console.log(emailTest);
+   if (emailTest === false) {
+       e.preventDefault();
+   }
+   const creditCardInput = ccInput.value;
+   const creditCardTest = /^[0-9]{13,16}$/.test(creditCardInput);
+   console.log(creditCardTest);
+   if (paymentOption.item(1).selected === true && creditCardTest === false) {
+       e.preventDefault();
+   }
+   const zipInput = zip.value;
+   const zipTest = /^[0-9]{5}$/.test(zipInput);
+   console.log(zipTest);
+   if (paymentOption.item(1).selected === true && zipTest === false) {
+       e.preventDefault();
+   }
+   const cvvInput = cvv.value;
+   const cvvTest = /^[0-9]{3}$/.test(cvvInput);
+   console.log(cvvTest);
+   if (paymentOption.item(1).selected === true && cvvTest === false) {
+       e.preventDefault();
+   }
 });
