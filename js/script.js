@@ -81,33 +81,104 @@ payment.addEventListener('change', (e) => {
 });
 
 form.addEventListener('submit', (e) => {
+   
    if (totalCost === 0) {
         e.preventDefault();
+        activitiesFieldset.classList.add = 'not-valid';
+        activitiesFieldset.classList.remove = 'valid';
+        activitiesFieldset.lastElementChild.style.display = 'block';
+   } else {
+        activitiesFieldset.classList.add = 'valid';
+        activitiesFieldset.classList.remove = 'not-valid';
+        activitiesFieldset.lastElementChild.style.display = 'none';
    }
+   
    const nameInput = name.value;
+   const nameLabel = name.parentNode;
    const nameTest = /\w/.test(nameInput);
    if (nameTest === false) {
         e.preventDefault();
-   } 
+        nameLabel.classList.add = 'not-valid';
+        nameLabel.classList.remove = 'valid';
+        nameLabel.lastElementChild.style.display = 'block';
+   } else {
+        nameLabel.classList.add = 'valid';
+        nameLabel.classList.remove = 'not-valid';
+        nameLabel.lastElementChild.style.display = 'none';
+   }
+  
    const emailInput = email.value;
+   const emailLabel = email.parentNode;
    const emailTest = /[^@]+@[^@.]+\.(com)/i.test(emailInput);
-   if (emailTest === false) {
+    if (emailTest === false) {
        e.preventDefault();
+        emailLabel.classList.add = 'not-valid';
+        emailLabel.classList.remove = 'valid';
+        emailLabel.lastElementChild.style.display = 'block';
+   } else {
+        emailLabel.classList.add = 'valid';
+        emailLabel.classList.remove = 'not-valid';
+        emailLabel.lastElementChild.style.display = 'none';
    }
    const creditCardInput = ccInput.value;
+   const ccInputLabel = ccInput.parentNode;
    const creditCardTest = /^[0-9]{13,16}$/.test(creditCardInput);
    if (paymentOption.item(1).selected === true && creditCardTest === false) {
        e.preventDefault();
+        ccInputLabel.classList.add = 'not-valid';
+        ccInputLabel.classList.remove = 'valid';
+        ccInputLabel.lastElementChild.style.display = 'block';
+   } else {
+        ccInputLabel.classList.add = 'valid';
+        ccInputLabel.classList.remove = 'not-valid';
+        ccInputLabel.lastElementChild.style.display = 'none';
    }
+   
    const zipInput = zip.value;
+   const zipLabel = zip.parentNode;
    const zipTest = /^[0-9]{5}$/.test(zipInput);
    if (paymentOption.item(1).selected === true && zipTest === false) {
        e.preventDefault();
+        zipLabel.classList.add = 'not-valid';
+        zipLabel.classList.remove = 'valid';
+        zipLabel.lastElementChild.style.display = 'block';
+   } else {
+        zipLabel.classList.add = 'valid';
+        zipLabel.classList.remove = 'not-valid';
+        zipLabel.lastElementChild.style.display = 'none';
    }
+   
    const cvvInput = cvv.value;
+   const cvvLabel = cvv.parentNode;
    const cvvTest = /^[0-9]{3}$/.test(cvvInput);
    if (paymentOption.item(1).selected === true && cvvTest === false) {
        e.preventDefault();
+        cvvLabel.classList.add = 'not-valid';
+        cvvLabel.classList.remove = 'valid';
+        cvvLabel.lastElementChild.style.display = 'block';
+   } else {
+        cvvLabel.classList.add = 'valid';
+        cvvLabel.classList.remove = 'not-valid';
+        cvvLabel.lastElementChild.style.display = 'none';
    }
 });
+
+for (let i = 0; i < checkboxes.length; i += 1) {
+    const checkBoxLabel = checkboxes[i].parentNode;
+    checkboxes[i].addEventListener('focus', (e) => {
+        const focus = e.target;
+        if (checkboxes[i] === focus) {     
+            checkBoxLabel.classList.add = '.focus';
+            console.log(checkBoxLabel);
+        }
+    });
+    checkboxes[i].addEventListener('blur', (e) => {
+        const blur = e.target;
+        if (checkboxes[i] === blur) {
+            checkBoxLabel.classList.remove = '.focus';
+            console.log(checkBoxLabel);
+        }
+    });
+}
+
 
