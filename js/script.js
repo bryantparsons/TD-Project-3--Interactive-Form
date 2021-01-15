@@ -1,4 +1,5 @@
-//Global variables for form
+//Global variables for form functionality
+
 const jobTitle = document.getElementById('title');
 const otherJobRole = document.getElementById('other-job-role');
 const shirtColor = document.getElementById('color');
@@ -18,16 +19,19 @@ const zip = document.querySelector("#zip");
 const cvv = document.querySelector("#cvv");
 const form = document.getElementsByTagName("form")[0];
 
+// Loads certain presets for the page
+
 otherJobRole.style.display = 'none';
 shirtColor.disabled = true;
 payPal.style.display = 'none';
 bitcoin.style.display = 'none';
 paymentOption.item(1).selected = true;
 
-
-//Code to bring name input for form into focus
+// Brings the name input into focus when page loads
 
 document.getElementById('name').focus({preventScroll:true});
+
+// Displays the 'other job role' element when that option is selected
 
 jobTitle.addEventListener('change', (e) => {
         const otherJobSelect = e.target;
@@ -37,6 +41,8 @@ jobTitle.addEventListener('change', (e) => {
             otherJobRole.style.display = 'none';
             }
 });
+
+//Takes the design theme selected and matches it with the available shirt colors
 
 shirtDesign.addEventListener('change', (e) => {
     shirtColor.disabled = false;
@@ -51,6 +57,8 @@ shirtDesign.addEventListener('change', (e) => {
     }
 });
 
+// Adds the total cost of all the activities selected
+
 activitiesFieldset.addEventListener('change', (e) => {  
     const activitiesCost = document.getElementById('activities-cost');
     const clicked = e.target;
@@ -62,6 +70,8 @@ activitiesFieldset.addEventListener('change', (e) => {
         }
     activitiesCost.textContent = `Total: $${totalCost}`;
 });
+
+// Displays or hides various options for payment
 
 payment.addEventListener('change', (e) => {
     const payChoice = e.target;    
@@ -79,6 +89,8 @@ payment.addEventListener('change', (e) => {
         }
     }
 });
+
+// Adds validation for form input, and displays error message when user enters incorrect info
 
 form.addEventListener('submit', (e) => {
    
@@ -163,20 +175,20 @@ form.addEventListener('submit', (e) => {
    }
 });
 
+// Increases user accessibiity 
+
 for (let i = 0; i < checkboxes.length; i += 1) {
     const checkBoxLabel = checkboxes[i].parentNode;
     checkboxes[i].addEventListener('focus', (e) => {
         const focus = e.target;
         if (checkboxes[i] === focus) {     
-            checkBoxLabel.classList.add = '.focus';
-            console.log(checkBoxLabel);
+            checkBoxLabel.classList.add('focus');
         }
     });
     checkboxes[i].addEventListener('blur', (e) => {
         const blur = e.target;
         if (checkboxes[i] === blur) {
-            checkBoxLabel.classList.remove = '.focus';
-            console.log(checkBoxLabel);
+            checkBoxLabel.classList.remove('focus');
         }
     });
 }
